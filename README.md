@@ -21,31 +21,24 @@ The project uses the WELFake Fake News Classification Dataset from Kaggle.
 
 ## Project Structure
 ```
-Task-01/
-├── README.md
+Task/
+├── .venv/
 ├── requirements.txt
-├── notebook/
+├── data/
 │   ├── WELFake_Dataset.csv
-│   ├── task_01_data_audit.ipynb
-│   ├── missing_value_analysis.csv
-│   └── audit_summary.csv
+│   ├── data_cleaned_task2.csv
+│   └── data_cleaned_task3.csv
+├── notebook/
+│   ├── README.md
+│   └── combined_project_pipeline.ipynb
 ├── results/
+│   ├── audit_summary.csv
+│   ├── duplicate_summary.csv
 │   ├── missing_value_analysis.csv
-│   └── audit_summary.csv
-├── Task-02-Missing-Values/
-│   ├── notebook/
-│   │   └── task_02_missing_value_imputation.ipynb
-│   ├── data/
-│   │   └── data_cleaned_task2.csv
-│   └── results/
-│       └── imputation_comparison.csv
-├── Task-03-Duplicate-Removal/
-│   ├── notebook/
-│   │   └── task_03_duplicate_removal.ipynb
-│   ├── data/
-│   │   └── data_cleaned_task3.csv
-│   └── results/
-│       └── duplicate_summary.csv
+│   ├── task4_distribution_boxplots.png
+│   ├── task4_distribution_histograms.png
+│   ├── task4_text_statistics.csv
+│   └── task4_text_summary_by_label.csv
 └── ...
 ```
 
@@ -65,7 +58,7 @@ Perform a comprehensive initial audit of the dataset before building any machine
 - `title` and `text` should be treated as string data, while `label` should be cast appropriately for modeling.
 
 ### Notebook
-- `notebook/task_01_data_audit.ipynb`
+- `notebook/combined_project_pipeline.ipynb` (contains the project workflow and audit section)
 
 ### Output Files
 - `results/missing_value_analysis.csv`
@@ -83,11 +76,11 @@ This task focuses only on missing-value handling, using the findings from Task 1
 - Remove rows with missing `label` values.
 
 ### Notebook
-- `Task-02-Missing-Values/notebook/task_02_missing_value_imputation.ipynb`
+- `notebook/combined_project_pipeline.ipynb` (Task 2 section)
 
 ### Output Files
-- `Task-02-Missing-Values/data/data_cleaned_task2.csv`
-- `Task-02-Missing-Values/results/imputation_comparison.csv`
+- `data/data_cleaned_task2.csv`
+- `results/missing_value_analysis.csv`
 
 ## Task 3 — Duplicate Detection and Removal
 
@@ -110,11 +103,11 @@ This task uses the cleaned dataset from Tasks 1 and 2 to detect and remove exact
 - Total rows removed: 9,003
 
 ### Notebook
-- `Task-03-Duplicate-Removal/notebook/task_03_duplicate_removal.ipynb`
+- `notebook/combined_project_pipeline.ipynb` (Task 3 section)
 
 ### Output Files
-- `Task-03-Duplicate-Removal/data/data_cleaned_task3.csv`
-- `Task-03-Duplicate-Removal/results/duplicate_summary.csv`
+- `data/data_cleaned_task3.csv`
+- `results/duplicate_summary.csv`
 
 ## Task 4 — Statistical Text Analysis
 
@@ -154,13 +147,12 @@ For Task 2 specifically, the same project dependency list is used, and the noteb
 - scikit-learn
 - NLTK
 
-## How to Run the Notebooks
-1. Download the raw dataset from the Kaggle link above.
+## How to Run the Project
+1. Download the raw dataset from the Kaggle link above and place it in `data/WELFake_Dataset.csv`.
 2. Install dependencies with `pip install -r requirements.txt`.
-3. Open and run `notebook/task_01_data_audit.ipynb` for the audit.
-4. Open and run `Task-02-Missing-Values/notebook/task_02_missing_value_imputation.ipynb` for missing-value handling.
-5. Open and run `Task-03-Duplicate-Removal/notebook/task_03_duplicate_removal.ipynb` for duplicate detection and removal.
-6. Run the `Task 4: Statistical Text Analysis` section in `notebook/combined_project_pipeline.ipynb` to generate the statistics, visualizations, and conclusion.
+3. Open `notebook/combined_project_pipeline.ipynb`.
+4. Run the notebook cells in order to execute the full workflow: audit, missing-value handling, duplicate removal, and Task 4 statistical analysis.
+5. Review the generated outputs in `results/` and the cleaned datasets in `data/`.
 
 ## Conclusion
 The WELFake dataset contains important data-quality issues, including missing text values, repeated article records, and near-duplicate headlines and articles. The workflow now also includes a raw-dataset statistical comparison of fake and real news text, giving a reproducible descriptive baseline before any downstream modeling.
